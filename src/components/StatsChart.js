@@ -42,7 +42,6 @@ class StatsChart extends React.Component {
 
 
     render() {
-        console.log(this.basicData)
         return (
             <>
                 <Chart type="bar" data={this.props.basicData} options={this.horizontalOptions} />

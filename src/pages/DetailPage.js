@@ -7,6 +7,7 @@ import { TabView, TabPanel } from 'primereact/tabview';
 import { Chart } from 'primereact/chart';
 import StatsChart from '../components/StatsChart';
 import { Tag } from 'primereact/tag';
+import { ProgressSpinner } from 'primereact/progressspinner';
 
 class DetailPage extends React.Component {
     constructor(props) {
@@ -117,7 +118,12 @@ class DetailPage extends React.Component {
                         </table>
                     </TabPanel>
                     <TabPanel header="Base Stats">
-                        <StatsChart basicData={this.state.basicData} />
+                        {
+                            this.state.basicData ?
+                                <StatsChart basicData={this.state.basicData} />
+                                :
+                                <ProgressSpinner />
+                        }
                     </TabPanel>
                     <TabPanel header="Evolution">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
