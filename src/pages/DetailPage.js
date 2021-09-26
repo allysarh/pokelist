@@ -6,7 +6,7 @@ import { Galleria } from 'primereact/galleria';
 import { TabView, TabPanel } from 'primereact/tabview';
 import { Chart } from 'primereact/chart';
 import StatsChart from '../components/StatsChart';
-
+import { Tag } from 'primereact/tag';
 
 class DetailPage extends React.Component {
     constructor(props) {
@@ -120,10 +120,10 @@ class DetailPage extends React.Component {
                         <StatsChart basicData={this.state.basicData} />
                     </TabPanel>
                     <TabPanel header="Evolution">
-                        Content III
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                     </TabPanel>
                     <TabPanel header="Moves">
-                        Content III
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                     </TabPanel>
                 </TabView>
             )
@@ -138,7 +138,7 @@ class DetailPage extends React.Component {
                     <div className="d-flex row border" style={{
                         borderRadius: '30px', backgroundColor: this.state.pokeType[0] && (this.state.pokeType[0].type.name == 'grass' ? '#4eccae' : this.state.pokeType[0].type.name == 'fire' ? '#fc6c6b' : this.state.pokeType[0].type.name == 'water' ? '#75beff' :
                             this.state.pokeType[0].type.name == 'normal' ? '#f5db84' : '#a98ba0'),
-                            boxShadow: '8px 8px #888888'
+                        boxShadow: '8px 8px #888888'
                     }}>
                         <div className="col-12 col-md-6 p-3" style={{
                             borderRadius: '30px', backgroundColor: this.state.pokeType[0] && (this.state.pokeType[0].type.name == 'grass' ? '#4eccae' : this.state.pokeType[0].type.name == 'fire' ? '#fc6c6b' : this.state.pokeType[0].type.name == 'water' ? '#75beff' :

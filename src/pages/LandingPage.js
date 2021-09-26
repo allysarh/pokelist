@@ -51,8 +51,8 @@ class LandingPage extends React.Component {
         return (
             <div style={{ height: '100vh', width: '100%' }}>
                 <div className="row " style={{ height: '100%', width: '100%', overflow: 'hidden' }}>
-                    <div className="col-12 col-md d-flex flex-column align-items-center justify-content-center" style={{ height: '100%' }} >
-                        <img src={pokeBall} style={{ height:'100px' }} className="d-flex d-md-none"/>
+                    <div className="col-12 col-md d-flex flex-column align-items-center justify-content-center poke-ball" style={{ height: '100%' }} >
+                        <img src={pokeBall} style={{ height:'100px' }} className="d-flex d-md-none poke-ball"/>
                         <h1 style={{fontFamily: 'heebo, sans-serif', fontSize: '500%'}}>POKELIST</h1>
                         <p>Pokemon list project by Allysa</p>
                     </div>

@@ -1,5 +1,17 @@
 .card:hover {
     box-shadow: inset 450px 0 0 0 #c0d1cd;
-    position: relative;
-    right: 5%;
+}
+
+.poke-ball {
+    animation-name: rotate;
+    animation-duration: 0.5s
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
