@@ -15,7 +15,8 @@ class DetailPage extends React.Component {
             pokeName: '',
             pokeData: [],
             pokeImage: [],
-            basicData: {}
+            basicData: {},
+            pokeType: []
         }
 
 
@@ -43,14 +44,26 @@ class DetailPage extends React.Component {
     componentDidMount() {
         this.getDetail()
         // this.itemTemplate()
+
+    }
+
+    printType = () => {
+        return this.state.pokeType.map((item, index) => {
+            return (
+                <div className="my-1 p-1 d-flex justify-content-center mx-1" style={{ backgroundColor: 'grey', height: '30px', width: 'auto', borderRadius: '30px', opacity: '0.4' }}>
+                    <p className="mx-3" style={{ textTransform: 'capitalize', color: 'white' }}>{item.type.name}</p>
+                </div>
+            )
+        })
     }
     getDetail = async () => {
         try {
             // let pokeName = this.props.location.search.split('=')[1]
             let res = await HTTP.get(`${this.props.location.search.split('=')[1]}`)
-            let pokeImage = Object.values(res.data.sprites).splice(0, 6).filter(item => item != null)
+            let pokeImage = Object.values(res.data.sprites).splice(0, 6).filter(item => item != null).reverse()
             let pokeData = [...this.state.pokeData]
             pokeData.push(res.data)
+            let pokeType = res.data.types
             let basicData = {
                 labels: res.data.stats.map(item => item.stat.name),
                 datasets: [{
@@ -59,8 +72,7 @@ class DetailPage extends React.Component {
                 }]
             }
 
-            // console.log("basic data", basicData)
-            this.setState({ pokeData, pokeImage, basicData }, () => console.log("STATE",this.state.basicData))
+            this.setState({ pokeData, pokeImage, basicData, pokeType }, () => console.log("STATE", this.state.pokeData))
         } catch (error) {
             console.log("error get name", error)
         }
@@ -87,19 +99,19 @@ class DetailPage extends React.Component {
             return (
                 <TabView>
                     <TabPanel header="About">
-                        <table>
-                            <td>
+                        <table cellPadding={10}>
+                            <td style={{ fontWeight: '500', color: '#78909c' }}>
                                 <tr>Species</tr>
-                                <tr>Height</tr>
+                                <tr>Base Experience</tr>
                                 <tr>Weight</tr>
                                 <tr>Height</tr>
-                                <tr>Base Expreience</tr>
+                                <tr>Abilities</tr>
                             </td>
-                            <td>
-                                <tr>{item.species.name}</tr>
+                            <td style={{ textTransform: 'capitalize', fontWeight: 'bold' }}>
+                                <tr >{item.species.name}</tr>
                                 <tr>{item.base_experience}</tr>
-                                <tr>{item.height}</tr>
-                                <tr>{item.weight}</tr>
+                                <tr>{item.height / 10} cm</tr>
+                                <tr>{item.weight / 10} kg</tr>
                                 <tr>{item.abilities.map(item => item.ability).map(item => item.name).join(" , ")}</tr>
                             </td>
                         </table>
@@ -120,21 +132,31 @@ class DetailPage extends React.Component {
     render() {
         let { pokeImage } = this.state
         return (
-            <>
+            <div className="container">
                 <NavbarComp />
                 <div className="p-5">
-                    <h1>{this.props.location.search.split('=')[1]}</h1>
-                    <div className="d-flex row border" style={{ borderRadius: '30px' }}>
-                        <div className="col-6">
+                    <div className="d-flex row border" style={{
+                        borderRadius: '30px', backgroundColor: this.state.pokeType[0] && (this.state.pokeType[0].type.name == 'grass' ? '#4eccae' : this.state.pokeType[0].type.name == 'fire' ? '#fc6c6b' : this.state.pokeType[0].type.name == 'water' ? '#75beff' :
+                            this.state.pokeType[0].type.name == 'normal' ? '#f5db84' : '#a98ba0'),
+                            boxShadow: '8px 8px #888888'
+                    }}>
+                        <div className="col-12 col-md-6 p-3" style={{
+                            borderRadius: '30px', backgroundColor: this.state.pokeType[0] && (this.state.pokeType[0].type.name == 'grass' ? '#4eccae' : this.state.pokeType[0].type.name == 'fire' ? '#fc6c6b' : this.state.pokeType[0].type.name == 'water' ? '#75beff' :
+                                this.state.pokeType[0].type.name == 'normal' ? '#f5db84' : '#a98ba0')
+                        }}>
+                            <h1 style={{ textTransform: 'capitalize', color: 'white' }}>{this.props.location.search.split('=')[1]}</h1>
+                            <div className="d-flex">
+                                {this.printType()}
+                            </div>
                             <Galleria value={pokeImage} showIndicators
-                                item={this.itemTemplate} thumbnail={this.thumbnailTemplate} numVisible={3} style={{ width: '100%', height: '100%' }} />
+                                item={this.itemTemplate} autoplay showThumbnails={false} numVisible={3} style={{ width: '100%', height: '100%' }} />
                         </div>
-                        <div className="col-6">
+                        <div className="col-12 col-md-6 p-3" style={{ borderRadius: '30px', position: 'relative', backgroundColor: 'white' }}>
                             {this.printAbility()}
                         </div>
                     </div>
                 </div>
-            </>
+            </div>
         );
     }
 }

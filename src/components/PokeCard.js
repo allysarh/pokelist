@@ -5,6 +5,7 @@ import { Button } from 'primereact/button';
 import { Skeleton } from 'primereact/skeleton';
 import { ProgressSpinner } from 'primereact/progressspinner';
 import { Link } from 'react-router-dom';
+import '../assets/css/PokeCard.css'
 
 class PokeCard extends React.Component {
     constructor(props) {
@@ -41,7 +42,7 @@ class PokeCard extends React.Component {
 
         return (
             <Link to={`/detail?name=${this.props.pokeName}`} style={{textDecoration: 'none'}}>
-                <Card className="m-2 border" style={{
+                <Card className="m-2 border card" style={{
                     borderRadius: '30px', overflow: 'hidden', width: '250px', height: '150px',
                     backgroundColor: this.state.pokeType[0] && (this.state.pokeType[0].type.name == 'grass' ? '#4eccae' : this.state.pokeType[0].type.name == 'fire' ? '#fc6c6b' : this.state.pokeType[0].type.name == 'water' ? '#75beff' :
                         this.state.pokeType[0].type.name == 'normal' ? '#f5db84' : '#a98ba0')
